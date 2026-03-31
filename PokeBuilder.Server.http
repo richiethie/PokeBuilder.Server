@@ -1,0 +1,6 @@
+@PokeBuilder.Server_HostAddress = http://localhost:5276
+
+GET {{PokeBuilder.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
