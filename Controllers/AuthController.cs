@@ -46,7 +46,7 @@ public class AuthController(IAuthService authService) : ControllerBase
         {
             Id = Guid.Parse(User.FindFirstValue(JwtRegisteredClaimNames.Sub)!),
             Email = User.FindFirstValue(JwtRegisteredClaimNames.Email)!,
-            DisplayName = User.FindFirstValue("displayName")!
+            Username = User.FindFirstValue("username")!
         });
     }
 }

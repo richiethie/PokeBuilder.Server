@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PokeBuilder.Server.Authentication.Handlers;
@@ -10,6 +9,7 @@ using PokeBuilder.Server.Data;
 using PokeBuilder.Server.Middleware;
 using PokeBuilder.Server.Services;
 using PokeBuilder.Server.Services.Interfaces;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +33,9 @@ builder.Services.AddScoped<ITokenService, JwtTokenService>();
 // ── Application services ──────────────────────────────────────────────────────
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IDataSeederService, DataSeederService>();
+builder.Services.AddScoped<IGameService, GameService>();
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
 var corsSettings = builder.Configuration
@@ -107,8 +110,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

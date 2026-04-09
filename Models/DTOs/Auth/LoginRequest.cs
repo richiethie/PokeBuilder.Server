@@ -5,8 +5,7 @@ namespace PokeBuilder.Server.Models.DTOs.Auth;
 public class LoginRequest
 {
     [Required]
-    [EmailAddress]
-    public string Email { get; set; } = string.Empty;
+    public string EmailOrUsername { get; set; } = string.Empty;
 
     [Required]
     [MinLength(8)]

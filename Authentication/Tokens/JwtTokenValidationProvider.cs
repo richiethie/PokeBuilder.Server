@@ -19,7 +19,12 @@ public class JwtTokenValidationProvider : ITokenValidationProvider
     {
         try
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JwtSecurityTokenHandler
+            {
+                // Prevent the handler from remapping standard JWT claim names (e.g. "sub" → ClaimTypes.NameIdentifier).
+                // This keeps claim names consistent with what JwtTokenService writes into the token.
+                MapInboundClaims = false
+            };
             var key = Encoding.UTF8.GetBytes(_options.JwtSecret);
 
             var validationParams = new TokenValidationParameters

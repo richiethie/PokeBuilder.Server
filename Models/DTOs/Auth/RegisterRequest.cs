@@ -5,8 +5,8 @@ namespace PokeBuilder.Server.Models.DTOs.Auth;
 public class RegisterRequest
 {
     [Required]
-    [StringLength(100, MinimumLength = 2)]
-    public string DisplayName { get; set; } = string.Empty;
+    [RegularExpression(@"^[a-z0-9_.]{3,20}$", ErrorMessage = "Username must be 3–20 characters: lowercase letters, numbers, underscores, and dots only.")]
+    public string Username { get; set; } = string.Empty;
 
     [Required]
     [EmailAddress]

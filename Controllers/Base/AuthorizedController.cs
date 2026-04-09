@@ -18,8 +18,8 @@ public abstract class AuthorizedController : ControllerBase
     protected string CurrentUserEmail =>
         User.FindFirstValue(JwtRegisteredClaimNames.Email)!;
 
-    protected string CurrentUserDisplayName =>
-        User.FindFirstValue("displayName")!;
+    protected string CurrentUserUsername =>
+        User.FindFirstValue("username")!;
 
     /// <summary>
     /// Maps a generic ServiceResult to the appropriate HTTP response.

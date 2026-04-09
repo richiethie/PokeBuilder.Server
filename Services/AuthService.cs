@@ -17,11 +17,14 @@ public class AuthService(AppDbContext context, ITokenService tokenService) : IAu
         if (await context.Users.AnyAsync(u => u.Email == emailNormalized))
             return ServiceResult<AuthResponse>.Fail("An account with that email already exists.");
 
+        if (await context.Users.AnyAsync(u => u.Username == request.Username))
+            return ServiceResult<AuthResponse>.Fail("That username is already taken.");
+
         var user = new User
         {
             Id = Guid.NewGuid(),
             Email = emailNormalized,
-            DisplayName = request.DisplayName.Trim(),
+            Username = request.Username.Trim(),
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
@@ -35,11 +38,14 @@ public class AuthService(AppDbContext context, ITokenService tokenService) : IAu
 
     public async Task<ServiceResult<AuthResponse>> LoginAsync(LoginRequest request)
     {
-        var emailNormalized = request.Email.ToLower().Trim();
-        var user = await context.Users.FirstOrDefaultAsync(u => u.Email == emailNormalized);
+        var identifier = request.EmailOrUsername.Trim().ToLower();
+
+        var user = identifier.Contains('@')
+            ? await context.Users.FirstOrDefaultAsync(u => u.Email == identifier)
+            : await context.Users.FirstOrDefaultAsync(u => u.Username == identifier);
 
         if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-            return ServiceResult<AuthResponse>.Fail("Invalid email or password.", 401);
+            return ServiceResult<AuthResponse>.Fail("Invalid credentials.", 401);
 
         return ServiceResult<AuthResponse>.Ok(BuildAuthResponse(user));
     }

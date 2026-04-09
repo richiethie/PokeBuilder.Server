@@ -47,7 +47,7 @@ public class CustomAuthHandler(
         {
             new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, Options.DevBypassUserId),
             new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Email, Options.DevBypassEmail),
-            new Claim("displayName", Options.DevBypassDisplayName)
+            new Claim("username", Options.DevBypassUsername)
         };
 
         var identity = new ClaimsIdentity(claims, Scheme.Name);

@@ -1,0 +1,387 @@
+{
+  "bulbasaur": {
+    "obtainMethods": ["starter"],
+    "locations": ["Pallet Town — choose from Professor Oak"],
+    "notes": "Strong against Brock and Misty. Dual Grass/Poison typing gives it useful coverage early.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Growl"},
+        {"level": 7, "name": "Leech Seed"}, {"level": 9, "name": "Vine Whip"},
+        {"level": 15, "name": "PoisonPowder"}, {"level": 16, "name": "Sleep Powder"},
+        {"level": 19, "name": "Razor Leaf"}, {"level": 21, "name": "Sweet Scent"},
+        {"level": 25, "name": "Growth"}, {"level": 28, "name": "Synthesis"},
+        {"level": 31, "name": "Solar Beam"}
+      ],
+      "tm": ["Toxic", "Bullet Seed", "Hidden Power", "Sunny Day", "Protect", "Giga Drain", "Frustration", "Solar Beam", "Return", "Double Team", "Sludge Bomb", "Facade", "Secret Power", "Rest", "Attract", "Cut", "Flash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "ivysaur": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Bulbasaur at level 16"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Growl"}, {"level": 1, "name": "Leech Seed"},
+        {"level": 9, "name": "Vine Whip"}, {"level": 15, "name": "PoisonPowder"},
+        {"level": 16, "name": "Sleep Powder"}, {"level": 20, "name": "Razor Leaf"},
+        {"level": 22, "name": "Sweet Scent"}, {"level": 29, "name": "Growth"},
+        {"level": 32, "name": "Synthesis"}, {"level": 36, "name": "Solar Beam"}
+      ],
+      "tm": ["Toxic", "Bullet Seed", "Hidden Power", "Sunny Day", "Protect", "Giga Drain", "Frustration", "Solar Beam", "Return", "Double Team", "Sludge Bomb", "Facade", "Secret Power", "Rest", "Attract"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "venusaur": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Ivysaur at level 32"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Growl"}, {"level": 1, "name": "Leech Seed"},
+        {"level": 9, "name": "Vine Whip"}, {"level": 15, "name": "PoisonPowder"},
+        {"level": 16, "name": "Sleep Powder"}, {"level": 20, "name": "Razor Leaf"},
+        {"level": 22, "name": "Sweet Scent"}, {"level": 29, "name": "Growth"},
+        {"level": 32, "name": "Synthesis"}, {"level": 36, "name": "Solar Beam"},
+        {"level": 53, "name": "Petal Dance"}
+      ],
+      "tm": ["Toxic", "Bullet Seed", "Hidden Power", "Sunny Day", "Hyper Beam", "Protect", "Giga Drain", "Frustration", "Solar Beam", "Return", "Double Team", "Sludge Bomb", "Facade", "Secret Power", "Rest", "Attract"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "charmander": {
+    "obtainMethods": ["starter"],
+    "locations": ["Pallet Town — choose from Professor Oak"],
+    "notes": "Challenging vs. the first two Gyms but dominates later. Evolves into one of the strongest Pokémon in Kanto.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Scratch"}, {"level": 1, "name": "Growl"},
+        {"level": 9, "name": "Ember"}, {"level": 15, "name": "Smokescreen"},
+        {"level": 22, "name": "Rage"}, {"level": 30, "name": "Scary Face"},
+        {"level": 38, "name": "Flamethrower"}, {"level": 46, "name": "Fire Spin"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Sunny Day", "Protect", "Frustration", "Return", "Double Team", "Flamethrower", "Fire Blast", "Facade", "Secret Power", "Rest", "Attract", "Overheat", "Rock Tomb", "Cut", "Strength", "Rock Smash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Swords Dance"]
+    }
+  },
+  "charmeleon": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Charmander at level 16"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Scratch"}, {"level": 1, "name": "Growl"}, {"level": 1, "name": "Ember"},
+        {"level": 15, "name": "Smokescreen"}, {"level": 22, "name": "Rage"},
+        {"level": 32, "name": "Scary Face"}, {"level": 40, "name": "Flamethrower"},
+        {"level": 50, "name": "Fire Spin"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Sunny Day", "Protect", "Frustration", "Return", "Double Team", "Flamethrower", "Fire Blast", "Facade", "Secret Power", "Rest", "Attract", "Overheat", "Rock Tomb"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Swords Dance"]
+    }
+  },
+  "charizard": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Charmeleon at level 36"],
+    "notes": "Gains Flying type upon evolution. Can learn Fly (HM02) making it an excellent HM user.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Scratch"}, {"level": 1, "name": "Growl"},
+        {"level": 1, "name": "Ember"}, {"level": 1, "name": "Smokescreen"},
+        {"level": 36, "name": "Wing Attack"}, {"level": 46, "name": "Scary Face"},
+        {"level": 48, "name": "Flamethrower"}, {"level": 56, "name": "Fire Spin"}
+      ],
+      "tm": ["Focus Punch", "Dragon Claw", "Toxic", "Hidden Power", "Sunny Day", "Hyper Beam", "Protect", "Frustration", "Solar Beam", "Return", "Double Team", "Aerial Ace", "Flamethrower", "Fire Blast", "Facade", "Secret Power", "Rest", "Attract", "Overheat", "Rock Tomb", "Cut", "Fly", "Strength", "Rock Smash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Swords Dance", "Counter"]
+    }
+  },
+  "squirtle": {
+    "obtainMethods": ["starter"],
+    "locations": ["Pallet Town — choose from Professor Oak"],
+    "notes": "Excellent defensive typing and great against Brock. Blastoise becomes one of the most reliable HM users.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 7, "name": "Bubble"}, {"level": 13, "name": "Withdraw"},
+        {"level": 18, "name": "Water Gun"}, {"level": 22, "name": "Bite"},
+        {"level": 28, "name": "Rapid Spin"}, {"level": 33, "name": "Protect"},
+        {"level": 40, "name": "Rain Dance"}, {"level": 46, "name": "Skull Bash"},
+        {"level": 52, "name": "Hydro Pump"}
+      ],
+      "tm": ["Toxic", "Hail", "Hidden Power", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Return", "Dig", "Double Team", "Ice Beam", "Blizzard", "Facade", "Secret Power", "Rest", "Attract", "Surf", "Strength", "Waterfall", "Rock Smash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Counter"]
+    }
+  },
+  "wartortle": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Squirtle at level 16"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 1, "name": "Bubble"}, {"level": 13, "name": "Withdraw"},
+        {"level": 18, "name": "Water Gun"}, {"level": 22, "name": "Bite"},
+        {"level": 28, "name": "Rapid Spin"}, {"level": 33, "name": "Protect"},
+        {"level": 41, "name": "Rain Dance"}, {"level": 47, "name": "Skull Bash"},
+        {"level": 54, "name": "Hydro Pump"}
+      ],
+      "tm": ["Toxic", "Hail", "Hidden Power", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Return", "Dig", "Double Team", "Ice Beam", "Blizzard", "Facade", "Secret Power", "Rest", "Attract", "Surf", "Strength", "Waterfall"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Counter"]
+    }
+  },
+  "blastoise": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Wartortle at level 36"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 1, "name": "Bubble"}, {"level": 1, "name": "Withdraw"},
+        {"level": 18, "name": "Water Gun"}, {"level": 22, "name": "Bite"},
+        {"level": 28, "name": "Rapid Spin"}, {"level": 33, "name": "Protect"},
+        {"level": 41, "name": "Rain Dance"}, {"level": 47, "name": "Skull Bash"},
+        {"level": 59, "name": "Hydro Pump"}
+      ],
+      "tm": ["Focus Punch", "Toxic", "Hail", "Hidden Power", "Hyper Beam", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Return", "Dig", "Double Team", "Ice Beam", "Blizzard", "Facade", "Secret Power", "Rest", "Attract", "Surf", "Strength", "Waterfall", "Rock Smash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Counter"]
+    }
+  },
+  "pikachu": {
+    "obtainMethods": ["wild"],
+    "locations": ["Viridian Forest"],
+    "notes": "Rare encounter. Evolves into Raichu with a Thunder Stone — hold off until it learns all desired moves first.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "ThunderShock"}, {"level": 1, "name": "Growl"},
+        {"level": 6, "name": "Tail Whip"}, {"level": 8, "name": "Thunder Wave"},
+        {"level": 11, "name": "Quick Attack"}, {"level": 15, "name": "Double-Edge"},
+        {"level": 20, "name": "Slam"}, {"level": 26, "name": "Thunderbolt"},
+        {"level": 33, "name": "Agility"}, {"level": 41, "name": "Thunder"},
+        {"level": 50, "name": "Light Screen"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Thunderbolt", "Thunder", "Return", "Double Team", "Shock Wave", "Facade", "Secret Power", "Rest", "Attract", "Flash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mega Punch", "Mega Kick", "Mimic", "Substitute", "Counter", "Seismic Toss", "Thunder Wave"]
+    }
+  },
+  "raichu": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Pikachu with a Thunder Stone"],
+    "notes": "Cannot learn moves by leveling up after evolution. Evolve Pikachu only after it has learned Thunderbolt (Lv. 26) or Thunder (Lv. 41).",
+    "moves": {
+      "levelUp": [],
+      "tm": ["Toxic", "Hidden Power", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Thunderbolt", "Thunder", "Return", "Double Team", "Shock Wave", "Facade", "Secret Power", "Rest", "Attract", "Flash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mega Punch", "Mega Kick", "Mimic", "Substitute", "Counter", "Seismic Toss", "Thunder Wave"]
+    }
+  },
+  "eevee": {
+    "obtainMethods": ["gift"],
+    "locations": ["Celadon City — top floor of the Celadon Condominiums"],
+    "notes": "Only one Eevee per save file. Evolves into Vaporeon (Water Stone), Jolteon (Thunder Stone), or Flareon (Fire Stone).",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 8, "name": "Sand-Attack"}, {"level": 16, "name": "Growl"},
+        {"level": 23, "name": "Quick Attack"}, {"level": 30, "name": "Bite"},
+        {"level": 36, "name": "Baton Pass"}, {"level": 42, "name": "Take Down"},
+        {"level": 50, "name": "Last Resort"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Sunny Day", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Return", "Double Team", "Facade", "Secret Power", "Rest", "Attract", "Shadow Ball"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "vaporeon": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Eevee with a Water Stone (buy at Celadon Dept. Store)"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 1, "name": "Sand-Attack"}, {"level": 1, "name": "Water Gun"},
+        {"level": 23, "name": "Quick Attack"}, {"level": 30, "name": "Bite"},
+        {"level": 36, "name": "Aurora Beam"}, {"level": 42, "name": "Acid Armor"},
+        {"level": 48, "name": "Haze"}, {"level": 54, "name": "Mist"},
+        {"level": 60, "name": "Hydro Pump"}
+      ],
+      "tm": ["Toxic", "Hail", "Hidden Power", "Ice Beam", "Blizzard", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Return", "Double Team", "Facade", "Secret Power", "Rest", "Attract", "Surf", "Strength", "Waterfall"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "jolteon": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Eevee with a Thunder Stone (buy at Celadon Dept. Store)"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 1, "name": "Sand-Attack"}, {"level": 1, "name": "ThunderShock"},
+        {"level": 23, "name": "Quick Attack"}, {"level": 30, "name": "Double Kick"},
+        {"level": 36, "name": "Pin Missile"}, {"level": 42, "name": "Agility"},
+        {"level": 48, "name": "Thunder Wave"}, {"level": 54, "name": "Discharge"},
+        {"level": 60, "name": "Thunder"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Thunderbolt", "Thunder", "Return", "Double Team", "Shock Wave", "Facade", "Secret Power", "Rest", "Attract", "Flash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "flareon": {
+    "obtainMethods": ["evolve"],
+    "locations": ["Evolve Eevee with a Fire Stone (buy at Celadon Dept. Store)"],
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Tail Whip"},
+        {"level": 1, "name": "Sand-Attack"}, {"level": 1, "name": "Ember"},
+        {"level": 23, "name": "Quick Attack"}, {"level": 30, "name": "Bite"},
+        {"level": 36, "name": "Fire Spin"}, {"level": 42, "name": "Smog"},
+        {"level": 48, "name": "Scary Face"}, {"level": 54, "name": "Smog"},
+        {"level": 60, "name": "Flamethrower"}, {"level": 65, "name": "Fire Blast"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Sunny Day", "Protect", "Frustration", "Return", "Double Team", "Flamethrower", "Fire Blast", "Facade", "Secret Power", "Rest", "Attract", "Overheat"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "lapras": {
+    "obtainMethods": ["gift"],
+    "locations": ["Silph Co. (Saffron City) — given by an employee on Floor 7 after clearing the building"],
+    "notes": "Only one Lapras per save file. Excellent coverage with Ice Beam + Surf. One of the best HM users.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Water Gun"}, {"level": 1, "name": "Growl"},
+        {"level": 5, "name": "Sing"}, {"level": 10, "name": "Mist"},
+        {"level": 16, "name": "Body Slam"}, {"level": 20, "name": "Confuse Ray"},
+        {"level": 25, "name": "Ice Beam"}, {"level": 31, "name": "Rain Dance"},
+        {"level": 38, "name": "Perish Song"}, {"level": 45, "name": "Safeguard"},
+        {"level": 53, "name": "Hydro Pump"}, {"level": 60, "name": "Blizzard"}
+      ],
+      "tm": ["Toxic", "Hail", "Hidden Power", "Ice Beam", "Blizzard", "Hyper Beam", "Protect", "Rain Dance", "Frustration", "Psychic", "Return", "Double Team", "Facade", "Rest", "Attract", "Surf", "Strength", "Waterfall"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "snorlax": {
+    "obtainMethods": ["wild"],
+    "locations": ["Route 12 (south of Lavender Town)", "Route 16 (west of Celadon City)"],
+    "notes": "Requires the Poké Flute to wake up. Only two available per save file. High HP and Sp. Def make it an excellent wall.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Tackle"}, {"level": 1, "name": "Defense Curl"},
+        {"level": 4, "name": "Amnesia"}, {"level": 9, "name": "Lick"},
+        {"level": 12, "name": "Belly Drum"}, {"level": 17, "name": "Snore"},
+        {"level": 20, "name": "Sleep Talk"}, {"level": 25, "name": "Body Slam"},
+        {"level": 28, "name": "Rest"}, {"level": 33, "name": "Yawn"},
+        {"level": 36, "name": "Earthquake"}, {"level": 41, "name": "Hyper Beam"}
+      ],
+      "tm": ["Focus Punch", "Toxic", "Hail", "Hidden Power", "Hyper Beam", "Protect", "Frustration", "Earthquake", "Iron Tail", "Return", "Psychic", "Shadow Ball", "Brick Break", "Double Team", "Flamethrower", "Ice Beam", "Blizzard", "Facade", "Secret Power", "Rest", "Attract", "Surf", "Strength", "Rock Smash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mega Punch", "Mega Kick", "Mimic", "Substitute", "Counter", "Seismic Toss"]
+    }
+  },
+  "gengar": {
+    "obtainMethods": ["trade"],
+    "locations": ["Trade Haunter to evolve it — Haunter found in Pokémon Tower (Lv. 17–25) and Victory Road (Lv. 29–34)"],
+    "notes": "Trade evolution only. Haunter must be traded to another player or game to evolve. Fastest and strongest fully evolved Ghost-type in Kanto.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Hypnosis"}, {"level": 1, "name": "Lick"},
+        {"level": 8, "name": "Spite"}, {"level": 12, "name": "Mean Look"},
+        {"level": 17, "name": "Curse"}, {"level": 20, "name": "Night Shade"},
+        {"level": 25, "name": "Confuse Ray"}, {"level": 29, "name": "Sucker Punch"},
+        {"level": 33, "name": "Shadow Punch"}, {"level": 38, "name": "Dream Eater"},
+        {"level": 43, "name": "Destiny Bond"}, {"level": 50, "name": "Nightmare"}
+      ],
+      "tm": ["Focus Punch", "Toxic", "Hidden Power", "Sunny Day", "Hyper Beam", "Protect", "Rain Dance", "Frustration", "Psychic", "Shadow Ball", "Double Team", "Aerial Ace", "Facade", "Secret Power", "Rest", "Attract", "Thief", "Skill Swap", "Flash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Counter", "Seismic Toss", "Thunder Wave"]
+    }
+  },
+  "alakazam": {
+    "obtainMethods": ["trade"],
+    "locations": ["Trade Kadabra to evolve it — Kadabra found in Cerulean Cave (post-game, Lv. 49–70)"],
+    "notes": "Trade evolution only. The highest Sp. Attack of any non-legendary Pokémon in FireRed. Extremely fast.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Teleport"}, {"level": 1, "name": "Kinesis"},
+        {"level": 16, "name": "Confusion"}, {"level": 18, "name": "Disable"},
+        {"level": 21, "name": "Psybeam"}, {"level": 23, "name": "Reflect"},
+        {"level": 25, "name": "Recover"}, {"level": 30, "name": "Future Sight"},
+        {"level": 33, "name": "Role Play"}, {"level": 38, "name": "Psychic"},
+        {"level": 43, "name": "Calm Mind"}, {"level": 48, "name": "Trick"}
+      ],
+      "tm": ["Focus Punch", "Calm Mind", "Toxic", "Hidden Power", "Sunny Day", "Hyper Beam", "Protect", "Rain Dance", "Frustration", "Iron Tail", "Thunderbolt", "Psychic", "Shadow Ball", "Brick Break", "Double Team", "Shock Wave", "Flamethrower", "Ice Beam", "Facade", "Secret Power", "Rest", "Attract", "Skill Swap", "Flash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mimic", "Substitute", "Counter", "Seismic Toss", "Thunder Wave"]
+    }
+  },
+  "articuno": {
+    "obtainMethods": ["legendary"],
+    "locations": ["Seafoam Islands (Routes 19–20) — requires Surf and Strength to reach"],
+    "notes": "Level 50. Save your game before encountering it. Bring many Ultra Balls or use your Master Ball.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Gust"}, {"level": 1, "name": "Powder Snow"},
+        {"level": 11, "name": "Mist"}, {"level": 20, "name": "Ice Shard"},
+        {"level": 31, "name": "Mind Reader"}, {"level": 41, "name": "Ancient Power"},
+        {"level": 51, "name": "Agility"}, {"level": 61, "name": "Ice Beam"},
+        {"level": 71, "name": "Reflect"}, {"level": 81, "name": "Hail"},
+        {"level": 91, "name": "Blizzard"}
+      ],
+      "tm": ["Toxic", "Hail", "Hidden Power", "Ice Beam", "Blizzard", "Hyper Beam", "Protect", "Rain Dance", "Frustration", "Return", "Double Team", "Aerial Ace", "Facade", "Secret Power", "Rest", "Attract", "Fly", "Surf", "Strength", "Waterfall"],
+      "tutor": ["Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "zapdos": {
+    "obtainMethods": ["legendary"],
+    "locations": ["Power Plant (Route 10) — requires Surf to reach the entrance"],
+    "notes": "Level 50. The Power Plant is accessible before beating the Elite Four. Bring many Ultra Balls.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Peck"}, {"level": 1, "name": "ThunderShock"},
+        {"level": 11, "name": "Thunder Wave"}, {"level": 20, "name": "Detect"},
+        {"level": 31, "name": "Pluck"}, {"level": 41, "name": "Ancient Power"},
+        {"level": 51, "name": "Charge"}, {"level": 61, "name": "Agility"},
+        {"level": 71, "name": "Discharge"}, {"level": 81, "name": "Rain Dance"},
+        {"level": 91, "name": "Thunder"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Hyper Beam", "Protect", "Rain Dance", "Frustration", "Thunderbolt", "Thunder", "Return", "Double Team", "Aerial Ace", "Shock Wave", "Facade", "Secret Power", "Rest", "Attract", "Fly", "Flash"],
+      "tutor": ["Double-Edge", "Mimic", "Substitute", "Thunder Wave"]
+    }
+  },
+  "moltres": {
+    "obtainMethods": ["legendary"],
+    "locations": ["Mt. Ember Summit (One Island) — requires Strength and completing the Sevii Islands quest"],
+    "notes": "Level 50. Located in the post-game Sevii Islands area. Bring many Ultra Balls.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Wing Attack"}, {"level": 1, "name": "Ember"},
+        {"level": 11, "name": "Fire Spin"}, {"level": 20, "name": "Agility"},
+        {"level": 31, "name": "Endure"}, {"level": 41, "name": "Ancient Power"},
+        {"level": 51, "name": "Flamethrower"}, {"level": 61, "name": "Safeguard"},
+        {"level": 71, "name": "Air Slash"}, {"level": 81, "name": "Sunny Day"},
+        {"level": 91, "name": "Heat Wave"}
+      ],
+      "tm": ["Toxic", "Hidden Power", "Sunny Day", "Hyper Beam", "Protect", "Frustration", "Return", "Double Team", "Aerial Ace", "Flamethrower", "Fire Blast", "Facade", "Secret Power", "Rest", "Attract", "Fly", "Overheat"],
+      "tutor": ["Double-Edge", "Mimic", "Substitute"]
+    }
+  },
+  "mewtwo": {
+    "obtainMethods": ["legendary"],
+    "locations": ["Cerulean Cave (Cerulean City) — accessible only after defeating the Elite Four and becoming Champion"],
+    "notes": "Level 70. The most powerful Pokémon in FireRed. Save your Master Ball — this is the best use for it.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Confusion"}, {"level": 1, "name": "Disable"},
+        {"level": 11, "name": "Barrier"}, {"level": 22, "name": "Swift"},
+        {"level": 33, "name": "Future Sight"}, {"level": 44, "name": "Mist"},
+        {"level": 55, "name": "Psychic"}, {"level": 66, "name": "Amnesia"},
+        {"level": 77, "name": "Recover"}, {"level": 88, "name": "Guard Swap"},
+        {"level": 99, "name": "Power Swap"}
+      ],
+      "tm": ["Focus Punch", "Calm Mind", "Toxic", "Hail", "Hidden Power", "Sunny Day", "Ice Beam", "Blizzard", "Hyper Beam", "Protect", "Rain Dance", "Giga Drain", "Frustration", "Solar Beam", "Iron Tail", "Thunderbolt", "Thunder", "Earthquake", "Return", "Psychic", "Shadow Ball", "Brick Break", "Double Team", "Flamethrower", "Fire Blast", "Aerial Ace", "Shock Wave", "Facade", "Secret Power", "Rest", "Attract", "Skill Swap", "Surf", "Strength", "Rock Smash", "Waterfall"],
+      "tutor": ["Body Slam", "Double-Edge", "Mega Punch", "Mega Kick", "Mimic", "Substitute", "Counter", "Seismic Toss", "Swift", "Thunder Wave"]
+    }
+  },
+  "mew": {
+    "obtainMethods": ["mythical"],
+    "locations": ["Event distribution only — not obtainable through normal gameplay"],
+    "notes": "Mew was distributed via special Nintendo events. It can learn every TM and HM in the game.",
+    "moves": {
+      "levelUp": [
+        {"level": 1, "name": "Pound"}, {"level": 10, "name": "Transform"},
+        {"level": 20, "name": "Mega Punch"}, {"level": 30, "name": "Metronome"},
+        {"level": 40, "name": "Psychic"}, {"level": 50, "name": "Barrier"},
+        {"level": 60, "name": "Ancient Power"}, {"level": 70, "name": "Amnesia"},
+        {"level": 80, "name": "Me First"}, {"level": 90, "name": "Baton Pass"},
+        {"level": 100, "name": "Nasty Plot"}
+      ],
+      "tm": ["Focus Punch", "Calm Mind", "Toxic", "Hail", "Hidden Power", "Sunny Day", "Ice Beam", "Blizzard", "Hyper Beam", "Protect", "Rain Dance", "Giga Drain", "Frustration", "Solar Beam", "Iron Tail", "Thunderbolt", "Thunder", "Earthquake", "Return", "Dig", "Psychic", "Shadow Ball", "Brick Break", "Double Team", "Flamethrower", "Fire Blast", "Aerial Ace", "Shock Wave", "Facade", "Secret Power", "Rest", "Attract", "Surf", "Fly", "Strength", "Waterfall", "Rock Smash"],
+      "tutor": ["Body Slam", "Double-Edge", "Mega Punch", "Mega Kick", "Mimic", "Substitute", "Counter", "Seismic Toss", "Metronome", "Swift", "Thunder Wave", "Swords Dance"]
+    }
+  }
+}

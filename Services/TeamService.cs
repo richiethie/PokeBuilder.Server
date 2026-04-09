@@ -18,6 +18,19 @@ public class TeamService(AppDbContext context) : ITeamService
             .ToListAsync();
     }
 
+    public async Task<ServiceResult<TeamResponse>> GetByIdAsync(Guid userId, Guid teamId)
+    {
+        var team = await context.Teams.FirstOrDefaultAsync(t => t.Id == teamId);
+
+        if (team is null)
+            return ServiceResult<TeamResponse>.Fail("Team not found.", 404);
+
+        if (team.UserId != userId)
+            return ServiceResult<TeamResponse>.Fail("You do not have permission to view this team.", 403);
+
+        return ServiceResult<TeamResponse>.Ok(TeamResponse.FromTeam(team));
+    }
+
     public async Task<ServiceResult<TeamResponse>> CreateAsync(Guid userId, SaveTeamRequest request)
     {
         var team = new Team

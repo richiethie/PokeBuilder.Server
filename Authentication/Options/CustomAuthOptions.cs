@@ -17,5 +17,5 @@ public class CustomAuthOptions : AuthenticationSchemeOptions
 
     public string DevBypassUserId { get; set; } = "00000000-0000-0000-0000-000000000001";
     public string DevBypassEmail { get; set; } = "dev@pokebuilder.local";
-    public string DevBypassDisplayName { get; set; } = "Developer";
+    public string DevBypassUsername { get; set; } = "developer";
 }

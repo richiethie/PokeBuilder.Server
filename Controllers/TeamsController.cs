@@ -15,6 +15,12 @@ public class TeamsController(ITeamService teamService) : AuthorizedController
         return Ok(teams);
     }
 
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        return FromResult(await teamService.GetByIdAsync(CurrentUserId, id));
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] SaveTeamRequest request)
     {
