@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Net.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using PokeBuilder.Server.Data;
 using PokeBuilder.Server.Models;
@@ -11,6 +12,7 @@ namespace PokeBuilder.Server.Services;
 
 public class DataSeederService(AppDbContext context) : IDataSeederService
 {
+    private static readonly HttpClient Http = new();
     private static readonly JsonSerializerOptions JsonOpts = new()
     {
         PropertyNameCaseInsensitive = true,
@@ -57,6 +59,19 @@ public class DataSeederService(AppDbContext context) : IDataSeederService
             .Where(p => dexIds.Contains(p.Id))
             .Select(p => p.Id)
             .ToHashSetAsync();
+
+        var missingFromSeed = dexIds
+            .Where(id => !pokemonLookup.ContainsKey(id))
+            .Distinct()
+            .OrderBy(id => id)
+            .ToList();
+
+        foreach (var pokemonId in missingFromSeed)
+        {
+            var fetched = await FetchPokemonFromPokeApiAsync(pokemonId);
+            if (fetched is not null)
+                pokemonLookup[pokemonId] = fetched;
+        }
 
         var newPokemon = dexIds
             .Where(id => !existingPokemonIds.Contains(id) && pokemonLookup.ContainsKey(id))
@@ -194,6 +209,46 @@ public class DataSeederService(AppDbContext context) : IDataSeederService
         return JsonSerializer.Deserialize<T>(stream, JsonOpts);
     }
 
+    private static async Task<PokemonJson?> FetchPokemonFromPokeApiAsync(int id)
+    {
+        try
+        {
+            var dto = await Http.GetFromJsonAsync<PokeApiPokemonDto>($"https://pokeapi.co/api/v2/pokemon/{id}");
+            if (dto is null || dto.Stats.Count == 0 || dto.Types.Count == 0)
+                return null;
+
+            var statMap = dto.Stats.ToDictionary(s => s.Stat.Name, s => s.BaseStat);
+
+            return new PokemonJson(
+                dto.Id,
+                ToDisplayName(dto.Name),
+                dto.Types
+                    .OrderBy(t => t.Slot)
+                    .Select(t => t.Type.Name)
+                    .ToArray(),
+                new BaseStatsJson(
+                    statMap.TryGetValue("hp", out var hp) ? hp : 0,
+                    statMap.TryGetValue("attack", out var atk) ? atk : 0,
+                    statMap.TryGetValue("defense", out var def) ? def : 0,
+                    statMap.TryGetValue("special-attack", out var spa) ? spa : 0,
+                    statMap.TryGetValue("special-defense", out var spd) ? spd : 0,
+                    statMap.TryGetValue("speed", out var spe) ? spe : 0
+                )
+            );
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static string ToDisplayName(string pokeApiName)
+    {
+        // Match existing naming style for slug conversion and UI labels.
+        var words = pokeApiName.Replace("-", " ").Split(" ", StringSplitOptions.RemoveEmptyEntries);
+        return string.Join(" ", words.Select(w => char.ToUpperInvariant(w[0]) + w[1..]));
+    }
+
     // ── Private JSON DTOs (mirror the JSON structure) ─────────────────────────
 
     private record GameJson(string Key, string Name, int Generation);
@@ -216,4 +271,20 @@ public class DataSeederService(AppDbContext context) : IDataSeederService
     );
 
     private record LevelUpMoveJson(int Level, string Name);
+
+    private sealed record PokeApiPokemonDto(
+        int Id,
+        string Name,
+        List<PokeApiStatEntry> Stats,
+        List<PokeApiTypeEntry> Types
+    );
+
+    private sealed record PokeApiStatEntry(
+        [property: JsonPropertyName("base_stat")] int BaseStat,
+        PokeApiNamedResource Stat
+    );
+
+    private sealed record PokeApiTypeEntry(int Slot, PokeApiNamedResource Type);
+
+    private sealed record PokeApiNamedResource(string Name);
 }

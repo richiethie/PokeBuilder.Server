@@ -3,6 +3,7 @@
   { "key": "heartgold", "name": "HeartGold / SoulSilver", "generation": 2 },
   { "key": "emerald", "name": "Emerald", "generation": 3 },
   { "key": "platinum", "name": "Platinum", "generation": 4 },
+  { "key": "blackwhite", "name": "Black / White", "generation": 5 },
   { "key": "black2white2", "name": "Black 2 / White 2", "generation": 5 },
   { "key": "xy", "name": "X / Y", "generation": 6 },
   { "key": "sunmoon", "name": "Sun / Moon", "generation": 7 },
