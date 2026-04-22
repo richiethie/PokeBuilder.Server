@@ -7,6 +7,7 @@ namespace PokeBuilder.Server.Data;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<User> Users { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<Team> Teams { get; set; }
 
     // ── Game data ─────────────────────────────────────────────────────────────
@@ -26,6 +27,21 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             entity.HasIndex(e => e.Username).IsUnique();
             entity.Property(e => e.Username).IsRequired().HasMaxLength(20);
             entity.Property(e => e.PasswordHash).IsRequired();
+            entity.Property(e => e.AccessFailedCount).HasDefaultValue(0);
+        });
+
+        modelBuilder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.HasIndex(e => e.TokenHash);
+            entity.Property(e => e.TokenHash).IsRequired().HasMaxLength(64);
+            entity.Property(e => e.UserAgent).HasMaxLength(512);
+            entity.Property(e => e.CreatedIp).HasMaxLength(45);
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Team>(entity =>

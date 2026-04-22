@@ -8,6 +8,6 @@ public class ChangePasswordRequest
     public string CurrentPassword { get; set; } = string.Empty;
 
     [Required]
-    [MinLength(8)]
+    [MinLength(12, ErrorMessage = "New password must be at least 12 characters.")]
     public string NewPassword { get; set; } = string.Empty;
 }

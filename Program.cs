@@ -1,4 +1,6 @@
+using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using PokeBuilder.Server.Authentication.Handlers;
 using PokeBuilder.Server.Authentication.Options;
@@ -7,6 +9,7 @@ using PokeBuilder.Server.Authentication.Tokens;
 using PokeBuilder.Server.Configuration;
 using PokeBuilder.Server.Data;
 using PokeBuilder.Server.Middleware;
+using PokeBuilder.Server.Security;
 using PokeBuilder.Server.Services;
 using PokeBuilder.Server.Services.Interfaces;
 using System.Text.Json;
@@ -31,6 +34,15 @@ builder.Services.AddScoped<ITokenValidationProvider, JwtTokenValidationProvider>
 builder.Services.AddScoped<ITokenService, JwtTokenService>();
 
 // ── Application services ──────────────────────────────────────────────────────
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddHttpClient(PwnedPasswordBreachChecker.HttpClientName, client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(5);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("PokeBuilder/1.0 (+https://github.com/pokebuilder)");
+});
+builder.Services.AddScoped<IPasswordBreachChecker, PwnedPasswordBreachChecker>();
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -75,6 +87,70 @@ builder.Services
         };
     });
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.OnRejected = async (context, token) =>
+    {
+        if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+        {
+            context.HttpContext.Response.Headers.RetryAfter =
+                Math.Ceiling(retryAfter.TotalSeconds).ToString();
+        }
+
+        await context.HttpContext.Response.WriteAsJsonAsync(
+            new { message = "Too many requests. Please try again later." },
+            cancellationToken: token);
+    };
+
+    static string PartitionByIp(HttpContext httpContext) =>
+        httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+    options.AddPolicy("auth-login", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            PartitionByIp(httpContext),
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromMinutes(15),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
+
+    options.AddPolicy("auth-register", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            PartitionByIp(httpContext),
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromHours(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
+
+    options.AddPolicy("auth-refresh", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            PartitionByIp(httpContext),
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 30,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
+
+    options.AddPolicy("auth-logout", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            PartitionByIp(httpContext),
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 20,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 0
+            }));
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -116,6 +192,8 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
+
+app.UseRateLimiter();
 
 app.UseAuthentication();
 app.UseAuthorization();

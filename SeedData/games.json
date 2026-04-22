@@ -1,12 +1,19 @@
 [
+  { "key": "redblueyellow", "name": "Red / Blue / Yellow", "generation": 1 },
   { "key": "firered", "name": "FireRed / LeafGreen", "generation": 1 },
+  { "key": "goldsilvercrystal", "name": "Gold / Silver / Crystal", "generation": 2 },
   { "key": "heartgold", "name": "HeartGold / SoulSilver", "generation": 2 },
+  { "key": "rubysapphire", "name": "Ruby / Sapphire", "generation": 3 },
   { "key": "emerald", "name": "Emerald", "generation": 3 },
+  { "key": "diamondpearl", "name": "Diamond / Pearl", "generation": 4 },
   { "key": "platinum", "name": "Platinum", "generation": 4 },
   { "key": "blackwhite", "name": "Black / White", "generation": 5 },
   { "key": "black2white2", "name": "Black 2 / White 2", "generation": 5 },
   { "key": "xy", "name": "X / Y", "generation": 6 },
+  { "key": "omegarubyalphasapphire", "name": "Omega Ruby / Alpha Sapphire", "generation": 3 },
   { "key": "sunmoon", "name": "Sun / Moon", "generation": 7 },
+  { "key": "ultrasunmoon", "name": "Ultra Sun / Ultra Moon", "generation": 7 },
   { "key": "swordshield", "name": "Sword / Shield", "generation": 8 },
+  { "key": "brilliantdiamondshiningpearl", "name": "Brilliant Diamond / Shining Pearl", "generation": 4 },
   { "key": "scarletviolet", "name": "Scarlet / Violet", "generation": 9 }
 ]

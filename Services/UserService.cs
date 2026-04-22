@@ -1,14 +1,22 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using PokeBuilder.Server.Authentication.Options;
+using PokeBuilder.Server.Authentication.Schemes;
 using PokeBuilder.Server.Authentication.Tokens;
 using PokeBuilder.Server.Data;
 using PokeBuilder.Server.Models.Common;
 using PokeBuilder.Server.Models.DTOs.Auth;
 using PokeBuilder.Server.Models.DTOs.Users;
+using PokeBuilder.Server.Security;
 using PokeBuilder.Server.Services.Interfaces;
 
 namespace PokeBuilder.Server.Services;
 
-public class UserService(AppDbContext context, ITokenService tokenService) : IUserService
+public class UserService(
+    AppDbContext context,
+    ITokenService tokenService,
+    IOptionsMonitor<CustomAuthOptions> authOptionsMonitor,
+    IPasswordBreachChecker breachChecker) : IUserService
 {
     public async Task<ServiceResult<AuthResponse>> UpdateProfileAsync(Guid userId, UpdateProfileRequest request)
     {
@@ -40,10 +48,12 @@ public class UserService(AppDbContext context, ITokenService tokenService) : IUs
         user.UpdatedAt = DateTime.UtcNow;
         await context.SaveChangesAsync();
 
-        // Return a fresh token so the JWT reflects any username/email changes immediately.
+        // Return a fresh access token so the JWT reflects any username/email changes immediately.
+        // Refresh token is unchanged — client keeps the existing refresh session.
         return ServiceResult<AuthResponse>.Ok(new AuthResponse
         {
             Token = tokenService.GenerateToken(user),
+            RefreshToken = null,
             User = UserResponse.FromUser(user)
         });
     }
@@ -57,8 +67,22 @@ public class UserService(AppDbContext context, ITokenService tokenService) : IUs
         if (!BCrypt.Net.BCrypt.Verify(request.CurrentPassword, user.PasswordHash))
             return ServiceResult.Fail("Current password is incorrect.");
 
+        var passwordError = PasswordRules.Validate(request.NewPassword);
+        if (passwordError is not null)
+            return ServiceResult.Fail(passwordError);
+
+        var authOptions = authOptionsMonitor.Get(CustomAuthSchemeDefaults.SchemeName);
+        if (authOptions.EnablePwnedPasswordCheck && await breachChecker.IsBreachedAsync(request.NewPassword))
+            return ServiceResult.Fail("This password is known from data breaches. Please choose a different one.");
+
         user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
         user.UpdatedAt = DateTime.UtcNow;
+
+        var now = DateTime.UtcNow;
+        await context.RefreshTokens
+            .Where(t => t.UserId == userId && t.RevokedAt == null)
+            .ExecuteUpdateAsync(s => s.SetProperty(t => t.RevokedAt, now));
+
         await context.SaveChangesAsync();
 
         return ServiceResult.Ok();

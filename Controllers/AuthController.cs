@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using PokeBuilder.Server.Authentication.Schemes;
 using PokeBuilder.Server.Models.DTOs.Auth;
 using PokeBuilder.Server.Services.Interfaces;
@@ -13,6 +14,7 @@ namespace PokeBuilder.Server.Controllers;
 public class AuthController(IAuthService authService) : ControllerBase
 {
     [HttpPost("register")]
+    [EnableRateLimiting("auth-register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
         var result = await authService.RegisterAsync(request);
@@ -24,14 +26,39 @@ public class AuthController(IAuthService authService) : ControllerBase
     }
 
     [HttpPost("login")]
+    [EnableRateLimiting("auth-login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var result = await authService.LoginAsync(request);
 
         if (!result.IsSuccess)
+        {
+            if (result.StatusCode == 429)
+                return StatusCode(429, new { message = result.Error });
+            return Unauthorized(new { message = result.Error });
+        }
+
+        return Ok(result.Data);
+    }
+
+    [HttpPost("refresh")]
+    [EnableRateLimiting("auth-refresh")]
+    public async Task<IActionResult> Refresh([FromBody] RefreshRequest request)
+    {
+        var result = await authService.RefreshAsync(request);
+
+        if (!result.IsSuccess)
             return Unauthorized(new { message = result.Error });
 
         return Ok(result.Data);
+    }
+
+    [HttpPost("logout")]
+    [EnableRateLimiting("auth-logout")]
+    public async Task<IActionResult> Logout([FromBody] LogoutRequest request)
+    {
+        await authService.LogoutAsync(request);
+        return NoContent();
     }
 
     /// <summary>

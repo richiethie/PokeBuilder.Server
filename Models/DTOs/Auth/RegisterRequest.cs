@@ -13,6 +13,6 @@ public class RegisterRequest
     public string Email { get; set; } = string.Empty;
 
     [Required]
-    [MinLength(8)]
+    [MinLength(12, ErrorMessage = "Password must be at least 12 characters.")]
     public string Password { get; set; } = string.Empty;
 }
